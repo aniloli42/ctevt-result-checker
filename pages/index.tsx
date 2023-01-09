@@ -4,19 +4,11 @@ import Input from "../components/Input/Input"
 import Select from "../components/Select/Select"
 import Option from "../components/Option/Option"
 import OptionList from "../components/OptionList/OptionList"
-import { useState, FormEvent } from "react"
 import { Formik } from "formik"
 import { FormDataSchema } from "../schema"
 import Error from "../components/Error/Error"
 
 const inter = Inter({ subsets: ["latin"] })
-
-type FormDataType = {
-  examYear: `${number}` | ""
-  level: "2" | "3"
-  symbolNo: `${number}` | ""
-  dob: `${number}-${number}-${number}` | ""
-}
 
 export default function Home() {
   return (
