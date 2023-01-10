@@ -1,7 +1,6 @@
 import { useFormik } from "formik"
 import { NextComponentType } from "next"
 import { FormDataSchema } from "../../schema"
-import Error from "../Error"
 import Input from "../Input"
 import Option from "../Option"
 import OptionList from "../OptionList"
@@ -33,14 +32,17 @@ const Form: NextComponentType = () => {
     >
       {/* Examination Year */}
       <Input
-        label="Examination Year*"
+        error={{
+          showError: !!touched.examYear && !!errors.examYear,
+          errorMessage: errors.examYear,
+        }}
+        label="Examination Year"
         list="exam_year"
         id="exam_year_input"
         placeholder="2***"
         title="Examination Year Example: 2079"
         name="examYear"
         inputMode="numeric"
-        isValid={touched.examYear == undefined ? true : !!!errors.examYear}
         value={values.examYear}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -49,14 +51,16 @@ const Form: NextComponentType = () => {
         id="exam_year"
         values={["2075", "2076", "2077", "2078", "2079"]}
       />
-      <Error>{!!touched.examYear && errors.examYear}</Error>
 
       {/* Class Level */}
       <Select
+        error={{
+          showError: !!touched.level && !!errors.level,
+          errorMessage: errors.level,
+        }}
         id="class_level"
-        label="Level*"
+        label="Level"
         name="level"
-        isValid={touched.level == undefined ? true : !!!errors.level}
         value={values.level}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -64,36 +68,39 @@ const Form: NextComponentType = () => {
         <Option text="Diploma/PCL" value={"3"} />
         <Option text="TSLC" value={"2"} />
       </Select>
-      <Error>{!!touched.level && errors.level}</Error>
 
       {/* Symbol number */}
       <Input
+        error={{
+          showError: !!touched.symbolNo && !!errors.symbolNo,
+          errorMessage: errors.symbolNo,
+        }}
         inputMode="numeric"
-        label="Symbol No*"
+        label="Symbol No"
         id="symbol_no"
         title="Symbol No Example: 09003000"
         name="symbolNo"
-        isValid={touched.symbolNo == undefined ? true : !!!errors.symbolNo}
         value={values.symbolNo}
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      <Error>{!!touched.symbolNo && errors.symbolNo}</Error>
 
       {/* Date Of Birth */}
       <Input
+        error={{
+          showError: !!touched.dob && !!errors.dob,
+          errorMessage: errors.dob,
+        }}
         inputMode="numeric"
-        label="Date Of Birth*"
+        label="Date Of Birth"
         id="dob"
         placeholder="yyyy-mm-dd"
         title="Date of Birth Example: 2058-12-28"
         name="dob"
-        isValid={touched.dob == undefined ? true : !!!errors.dob}
         value={values.dob}
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      <Error>{!!touched.dob && errors.dob}</Error>
 
       <button
         type="submit"
