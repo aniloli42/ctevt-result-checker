@@ -1,7 +1,7 @@
 import { ReactNode, SelectHTMLAttributes } from "react"
 import Error from "../Error"
 import { ErrorSystem } from "../Input/Input"
-import Label from "../Label/Label"
+import Label from "../Label"
 
 export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
   id: string

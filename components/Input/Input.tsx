@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from "react"
 import Error from "../Error"
-import Label from "../Label/Label"
+import Label from "../Label"
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string
