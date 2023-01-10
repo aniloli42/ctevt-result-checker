@@ -18,8 +18,6 @@ const Form: NextComponentType = () => {
     touched,
   } = useFormik({
     validationSchema: FormDataSchema,
-    validateOnChange: false,
-    validateOnMount: false,
     initialValues: { examYear: "", dob: "", level: "3", symbolNo: "" },
     onSubmit: (values, helpers) => {
       const generatedLink = `${process.env.NEXT_PUBLIC_LINK}/${values.examYear}/${values.level}/${values.symbolNo}/${values.dob}`
@@ -99,7 +97,7 @@ const Form: NextComponentType = () => {
 
       <button
         type="submit"
-        disabled={touched.dob == undefined ? true : !isValid}
+        disabled={touched.examYear == undefined ? true : !isValid}
         className="bg-gray-600 py-2 px-4 text-white rounded-sm hover:bg-gray-700 focus-visible:bg-gray-700 ring-gray-300 disabled:bg-gray-300 disabled:cursor-not-allowed"
       >
         Download PDF
