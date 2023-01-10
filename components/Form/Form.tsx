@@ -41,6 +41,7 @@ const Form: NextComponentType = () => {
         placeholder="2***"
         title="Examination Year Example: 2079"
         name="examYear"
+        inputMode="numeric"
         isValid={touched.examYear == undefined ? true : !!!errors.examYear}
         value={values.examYear}
         onChange={handleChange}
@@ -98,7 +99,7 @@ const Form: NextComponentType = () => {
 
       <button
         type="submit"
-        disabled={!isValid}
+        disabled={touched.dob == undefined ? true : !isValid}
         className="bg-gray-600 py-2 px-4 text-white rounded-sm hover:bg-gray-700 focus-visible:bg-gray-700 ring-gray-300 disabled:bg-gray-300 disabled:cursor-not-allowed"
       >
         Download PDF
