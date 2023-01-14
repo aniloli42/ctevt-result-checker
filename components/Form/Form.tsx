@@ -40,6 +40,8 @@ const Form: NextComponentType = () => {
       helpers.resetForm()
     } catch (error: unknown) {
       if (error instanceof Error) console.log(error.message)
+
+      console.log(error)
     }
   }
 
