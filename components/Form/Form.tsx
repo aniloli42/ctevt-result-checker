@@ -1,12 +1,48 @@
-import { useFormik } from "formik"
+import axios from "axios"
+import { FormikHelpers, useFormik } from "formik"
 import { NextComponentType } from "next"
 import { FormDataSchema } from "../../schema"
+import { UserDataType } from "../../types"
 import Input from "../Input"
 import Option from "../Option"
 import OptionList from "../OptionList"
 import Select from "../Select"
 
 const Form: NextComponentType = () => {
+  const getPDFResult = async (
+    values: UserDataType,
+    helpers: FormikHelpers<UserDataType>
+  ) => {
+    try {
+      const { examYear, level, symbolNo } = values
+
+      const resultResponse = (
+        await axios.post("/api/result", values, {
+          responseType: "arraybuffer",
+        })
+      ).data
+
+      const blob = new Blob([resultResponse], { type: "text/html" })
+      const resultURL = window.URL.createObjectURL(blob)
+      const linkElement = document.createElement("a")
+      linkElement.href = resultURL
+      linkElement.download = `${examYear}_result_${symbolNo}.pdf`
+
+      linkElement.dispatchEvent(
+        new MouseEvent("click", {
+          bubbles: true,
+          cancelable: true,
+          view: window,
+        })
+      )
+
+      window.URL.revokeObjectURL(resultURL)
+      helpers.resetForm()
+    } catch (error: unknown) {
+      if (error instanceof Error) console.log(error.message)
+    }
+  }
+
   const {
     handleBlur,
     handleChange,
@@ -18,11 +54,7 @@ const Form: NextComponentType = () => {
   } = useFormik({
     validationSchema: FormDataSchema,
     initialValues: { examYear: "", dob: "", level: "3", symbolNo: "" },
-    onSubmit: (values, helpers) => {
-      const generatedLink = `${process.env.NEXT_PUBLIC_LINK}/${values.examYear}/${values.level}/${values.symbolNo}/${values.dob}`
-      window.open(generatedLink, "_blank")
-      helpers.resetForm()
-    },
+    onSubmit: getPDFResult,
   })
 
   return (
