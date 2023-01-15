@@ -1,27 +1,28 @@
+import { useField } from "formik"
 import { ReactNode, SelectHTMLAttributes } from "react"
 import Error from "../Error"
-import { ErrorSystem } from "../Input/Input"
 import Label from "../Label"
 
 export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
-  id: string
+  name: string
   label: string
   children: ReactNode
-  error: ErrorSystem
 }
 
-const Select = ({ id, label, error, children, ...rest }: SelectProps) => {
+const Select = ({ label, children, ...props }: SelectProps) => {
+  const [fields, meta, helpers] = useField(props.name)
+
   return (
     <div>
       <div className="flex gap-3 items-center">
-        <Label id={id} label={label} />
-        {error.showError && <Error>{error.errorMessage}</Error>}
+        <Label htmlFor={props.id} label={label} />
+        {meta.error && <Error>{meta.error}</Error>}
       </div>
       <select
         className={`flex px-2 py-1 w-full rounded-sm  ring-0 outline-none border-2 bg-white ${
-          error.showError ? " border-red-500" : "border-transparent"
+          meta.error ? " border-red-500" : "border-transparent"
         }`}
-        {...rest}
+        {...props}
       >
         {children}
       </select>

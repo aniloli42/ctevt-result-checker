@@ -1,14 +1,12 @@
-export type LevelProps = {
-  id: string
+import { LabelHTMLAttributes } from "react"
+
+export type LevelProps = LabelHTMLAttributes<HTMLLabelElement> & {
   label: string
 }
 
-const Label = ({ id, label }: LevelProps) => {
+const Label = ({ label, ...props }: LevelProps) => {
   return (
-    <label
-      htmlFor={id}
-      className="text-base font-medium mb-1 flex text-gray-500"
-    >
+    <label className="text-base font-medium mb-1 flex text-gray-500" {...props}>
       {label}
     </label>
   )
