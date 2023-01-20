@@ -10,15 +10,16 @@ export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
 }
 
 const Select = ({ label, children, ...props }: SelectProps) => {
-  const [fields, meta, helpers] = useField(props.name)
-
+  const [fields, meta] = useField(props.name)
+  
+  console.log(fields)
   return (
     <div>
       <div className="flex gap-3 items-center">
         <Label htmlFor={props.id} label={label} />
         {meta.error && <Error>{meta.error}</Error>}
       </div>
-      <select
+      <select {...fields}
         className={`flex px-2 py-1 w-full rounded-sm  ring-0 outline-none border-2 bg-white ${
           meta.error ? " border-red-500" : "border-transparent"
         }`}
