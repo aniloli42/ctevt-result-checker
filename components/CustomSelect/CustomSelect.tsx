@@ -12,7 +12,6 @@ export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
 const Select = ({ label, children, ...props }: SelectProps) => {
   const [fields, meta] = useField(props.name)
   
-  console.log(fields)
   return (
     <div>
       <div className="flex gap-3 items-center">
