@@ -9,11 +9,11 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 }
 
 const CustomInput = ({ label, ...props }: InputProps) => {
-  const [fields, meta, helpers] = useField(props.name)
+  const [fields, meta] = useField(props.name)
 
   return (
     <div>
-      <div className="flex gap-3 items-center">
+      <div className="flex items-center gap-3">
         <Label htmlFor={props.id} label={label} />
         {meta.touched && meta.error && <Error>{meta.error}</Error>}
       </div>

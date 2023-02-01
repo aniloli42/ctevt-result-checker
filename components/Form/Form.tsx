@@ -54,7 +54,7 @@ const Form: NextComponentType = () => {
       {({ handleSubmit, isValid, touched, isSubmitting }) => (
         <form
           onSubmit={handleSubmit}
-          className="mx-auto mt-2 sm:mt-10 p-3 rounded w-full sm:max-w-xl bg-gray-200 flex flex-col gap-3"
+          className="flex flex-col w-full gap-3 p-3 mx-auto mt-2 bg-gray-200 rounded sm:mt-10 sm:max-w-xl"
         >
           {/* Examination Year */}
           <CustomInput
@@ -101,7 +101,7 @@ const Form: NextComponentType = () => {
             disabled={
               touched.examYear == undefined ? true : !isValid || isSubmitting
             }
-            className="bg-gray-600 py-2 px-4 text-white rounded-sm hover:bg-gray-700 focus-visible:bg-gray-700 ring-gray-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="px-4 py-2 text-white bg-gray-600 rounded-sm hover:bg-gray-700 focus-visible:bg-gray-700 ring-gray-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             {isSubmitting ? "Downloading..." : "Download PDF"}
           </button>
