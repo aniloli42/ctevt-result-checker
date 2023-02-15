@@ -2,6 +2,8 @@ import axios from "axios"
 import { NextApiRequest, NextApiResponse } from "next"
 import { UserDataType } from "../../types"
 
+const websiteLink = process.env.NEXT_PUBLIC_LINK
+
 export default async function result(
   req: NextApiRequest,
   res: NextApiResponse
@@ -20,7 +22,7 @@ export default async function result(
     )
       return res.send("All Fields required")
 
-    const getResultURL = `${process.env.NEXT_PUBLIC_LINK}/${examYear}/${level}/${symbolNo}/${dob}`
+    const getResultURL = `${websiteLink}/download-to-pdf/${examYear}/${level}/${symbolNo}/${dob}`
 
     const resultResponse = await axios.get(getResultURL, {
       responseType: "arraybuffer",
