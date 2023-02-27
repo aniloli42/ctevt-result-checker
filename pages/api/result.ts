@@ -26,6 +26,11 @@ export default async function result(
 
     const resultResponse = await axios.get(getResultURL, {
       responseType: "arraybuffer",
+      headers: {
+        "Cache-Control": "no-cache",
+        Pragma: "no-cache",
+        Expires: "0",
+      },
     })
 
     res.statusCode = 200

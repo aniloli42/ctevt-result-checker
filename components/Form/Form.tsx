@@ -23,6 +23,11 @@ const Form = ({ serverStatus }: FormPropsType) => {
       const resultResponse = (
         await axios.post("/api/result", values, {
           responseType: "arraybuffer",
+          headers:{
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache',
+            'Expires': '0',
+          }
         })
       ).data
 
