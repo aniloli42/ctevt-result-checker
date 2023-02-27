@@ -1,12 +1,11 @@
 import axios from "axios"
 import { Formik, FormikHelpers } from "formik"
-import { NextComponentType } from "next"
 import { FormDataSchema } from "../../schema"
 import { UserDataType } from "../../types"
 import CustomInput from "../CustomInput"
+import CustomSelect from "../CustomSelect"
 import Option from "../Option"
 import OptionList from "../OptionList"
-import CustomSelect from "../CustomSelect"
 
 type FormPropsType = {
   serverStatus: boolean
@@ -23,11 +22,11 @@ const Form = ({ serverStatus }: FormPropsType) => {
       const resultResponse = (
         await axios.post("/api/result", values, {
           responseType: "arraybuffer",
-          headers:{
-            'Cache-Control': 'no-cache',
-            'Pragma': 'no-cache',
-            'Expires': '0',
-          }
+          headers: {
+            "Cache-Control": "no-cache",
+            Pragma: "no-cache",
+            Expires: "0",
+          },
         })
       ).data
 
